@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  BadRequestException,
+} from '@nestjs/common';
+import { validate } from 'class-validator';
 import { CreateQuestionDto } from 'src/dto/create-question.dto';
 import { Question } from 'src/interfaces/question';
 import { QuestionList } from 'src/interfaces/questionList';
@@ -17,6 +24,10 @@ export class QuestionsController {
   async create(
     @Body() createQuestionDto: CreateQuestionDto,
   ): Promise<QuestionList> {
+    const errors = await validate(createQuestionDto);
+    if (errors.length > 0) {
+      throw new BadRequestException('Validation Failed');
+    }
     return this.questionsService.create(createQuestionDto);
   }
 }

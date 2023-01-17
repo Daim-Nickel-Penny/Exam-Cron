@@ -9,14 +9,14 @@ export class QuestionsController {
   constructor(private questionsService: QuestionsService) {}
 
   @Get()
-  findAll(): QuestionList {
+  async findAll(): Promise<QuestionList> {
     return this.questionsService.findAll();
   }
 
   @Post()
   async create(
     @Body() createQuestionDto: CreateQuestionDto,
-  ): Promise<Question[]> {
+  ): Promise<QuestionList> {
     return this.questionsService.create(createQuestionDto);
   }
 }

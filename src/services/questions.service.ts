@@ -5,10 +5,14 @@ import { Question } from 'src/interfaces/question';
 export class QuestionsService {
   private readonly questionList: QuestionList = { questions: [] };
   private readonly questionArr: Array<Question> = [];
-  create(question: Question): Question[] {
-    // this.questionList.questions.push(question);
-    this.questionArr.push(question);
-    return this.questionArr;
+  create(question: Question): QuestionList {
+    // this.questionList.questions.push({
+    //   questionId: '123r4',
+    //   question: 'hfdf',
+    //   answer: 'jjjjj',
+    // });
+    this.questionList.questions.push(question);
+    return this.questionList;
   }
 
   findAll(): QuestionList {

@@ -6,16 +6,16 @@ export class QuestionsService {
   private readonly questionList: QuestionList = { questions: [] };
   private readonly questionArr: Array<Question> = [];
   create(question: Question): QuestionList {
-    // this.questionList.questions.push({
-    //   questionId: '123r4',
-    //   question: 'hfdf',
-    //   answer: 'jjjjj',
-    // });
     this.questionList.questions.push(question);
     return this.questionList;
   }
 
   findAll(): QuestionList {
+    this.questionList.questions.push({
+      questionId: '1',
+      question: 'hfdf',
+      answer: 'jjjjj',
+    });
     return this.questionList;
   }
 }

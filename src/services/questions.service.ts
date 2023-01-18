@@ -5,12 +5,13 @@ import { Question } from 'src/interfaces/question';
 export class QuestionsService {
   private readonly questionList: QuestionList = { questions: [] };
   private readonly questionArr: Array<Question> = [];
-  create(question: Question): QuestionList {
+  
+  async create(question: Question): Promise<QuestionList> {
     this.questionList.questions.push(question);
     return this.questionList;
   }
 
-  findAll(): QuestionList {
+  async findAll(): Promise<QuestionList> {
     this.questionList.questions.push({
       questionId: '1',
       question: 'hfdf',

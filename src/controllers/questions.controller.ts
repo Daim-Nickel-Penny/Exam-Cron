@@ -28,6 +28,6 @@ export class QuestionsController {
     if (errors.length > 0) {
       throw new BadRequestException('Validation Failed');
     }
-    return this.questionsService.create(createQuestionDto);
+    return await this.questionsService.create(createQuestionDto);
   }
 }

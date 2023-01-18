@@ -8,7 +8,7 @@ export class AnswerService {
   constructor(private questionsService: QuestionsService) {}
 
   async findById(id: string): Promise<Question> {
-    let questionData: QuestionList = this.questionsService.findAll();
+    let questionData: QuestionList = await this.questionsService.findAll();
     let questionById: Question | undefined;
 
     questionData.questions.forEach((ques) => {
@@ -20,5 +20,20 @@ export class AnswerService {
     if (questionById === undefined) {
       throw new BadRequestException(badrequest);
     } else return questionById;
+  }
+
+async AddAnswerToQues(question:Question): Promise<QuestionList> {
+    
+
+  let questionData: QuestionList = await this.questionsService.findAll();
+    
+  questionData.questions.forEach((ques)=>{
+    if(ques.questionId === question.questionId){
+      ques.answer =question.answer
+    }
+  })
+    
+
+    return questionData;
   }
 }
